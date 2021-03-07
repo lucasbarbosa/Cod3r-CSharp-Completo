@@ -1,5 +1,4 @@
 # Cod3r - C# Completo
-==================================
 
 App de estudo e as anotações do curso C# Completo | Cod3r
 
