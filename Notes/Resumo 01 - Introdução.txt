@@ -1,0 +1,34 @@
+C# Curso Completo: Do Básico ao Avançado
+Instrutor: Leonardo Moura Leitao (Equipe Cod3r)
+
+---------------------------------------------------------------------------------
+01.05 - Algoritmos
+---------------------------------------------------------------------------------
+- Sequência de passos/execuções, podendo ter condições, repetições, dados de entrada e saída.
+
+---------------------------------------------------------------------------------
+01.06 - Estrutura de Dados
+---------------------------------------------------------------------------------
+- Estrutura de dados é diferente dos dados
+- Organizações/Restrições para trazer o dado da forma esperada seguindo regras.
+
+Clássicas
+- Fila | Pilha | Árvores
+
+Básicas/Primitivas
+- Números inteiros | Números reais | Letras | Símbolos | Boleanos
+
+Personalizadas
+- Classes e objetos
+
+---------------------------------------------------------------------------------
+01.07 - .NET
+---------------------------------------------------------------------------------
+- Framework Multiplataforma
+- Estrutura do Framework: LIBs (Conjunto de soluções para auxiliar o desenvolvimento) e CLR
+
+---------------------------------------------------------------------------------
+01.08 - CLR - Common Language Runtime
+---------------------------------------------------------------------------------
+- Mesmo conceito de máquina virtual assim como o Java, que é "traduzir" uma linguagem intermediária (ILC) para a linguagem de ambiente: Windows, Linux e MAC por exemplo.
+

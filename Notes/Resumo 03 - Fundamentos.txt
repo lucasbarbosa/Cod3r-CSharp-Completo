@@ -1,0 +1,184 @@
+C# Curso Completo: Do Básico ao Avançado
+Instrutor: Leonardo Moura Leitao (Equipe Cod3r)
+
+---------------------------------------------------------------------------------
+03.10 - Arquitetura de Solução .NET
+---------------------------------------------------------------------------------
+- Basicamente a arquitetura da Solução (Aplicação) é formada por Projetos (Assembly - EXE ou DLL), Pastas (Namespaces) e Arquivos (Classes)
+
+---------------------------------------------------------------------------------
+03.17 - Variáveis e constantes
+---------------------------------------------------------------------------------
+- double raio = 4.5; // Variável
+- const double PI = 3.14; // Constante
+
+- Bool (1 byte): false => true
+- Byte (1 byte): 0 => 255
+- Sbyte (1 byte): -128 => 127
+- Short (2 bytes): -32.768 => 32.767
+- Int (4 bytes): -2.147.483.648 => 2.147.483.647
+- Uint (4 bytes): 0 => 4_294_967_295 // Underline pode ser utilizado em qualquer posição, mas separando os milhares facilita a leitura.
+- Long (8 bytes): -9_223_372_036_854_775_808 => 9_223_372_036_854_775_807
+- Ulong (8 bytes): 0 => 18_446_744_073_709_551_615
+- Float (4 bytes): -3,402823E+38 => 3,402823E+38
+=> float precoComputador = 1299.99F; // Precisa colocar o "F" no final para indicar que é um float e não um double, que tem o dobro da capacidade.
+- Double (8 bytes): -1,79769313486232E+308 => 1,79769313486232E+308
+- Decimal (16 bytes): -79_228_162_514_264_337_593_543_950_335 => 79_228_162_514_264_337_593_543_950_335
+- Char (1 byte) => char letra = 'b';
+
+---------------------------------------------------------------------------------
+03.18 - Inferência de Tipos
+---------------------------------------------------------------------------------
+var nome = "Leonardo"; // Inferência
+int a; // Declaração
+a = 3; // Atribuição
+int b = 2; // Inicialização
+
+---------------------------------------------------------------------------------
+03.19 - Interpolação de Strings
+---------------------------------------------------------------------------------
+Console.WriteLine("O " + nome + " da marca " + marca + " custa " + preco + "."); // Concatenação
+Console.WriteLine("O {0} da marca {1} custa {2}.", nome, marca, preco); // Interpolação
+Console.WriteLine($"A marca {marca} é legal!"); // Interpolação
+Console.WriteLine($"1 + 1 = {1 + 1}!"); // Interpolação
+
+---------------------------------------------------------------------------------
+03.20 - Notação Ponto
+---------------------------------------------------------------------------------
+Console.WriteLine("olá".ToUpper().Insert(3, " World!").Replace("World!", "Mundo!")); // "OLÁ Mundo!"
+Console.WriteLine("Teste".Length); // 5
+string valorImportante = null;
+Console.WriteLine(valorImportante?.Length); // '' => Navegação segura
+
+---------------------------------------------------------------------------------
+03.21 - Lendo Dados Console
+---------------------------------------------------------------------------------
+string nome = Console.ReadLine();
+int idade = int.Parse(Console.ReadLine()); // Mesmo sendo um número, o tipo de dado capturado pelo console é um string
+double salario = double.Parse(Console.ReadLine(), System.Globalization.CultureInfo.InvariantCulture); // Usar o "." como separador de casas decimais, independente da cultura do sistema.
+
+---------------------------------------------------------------------------------
+03.22 - Formatando números
+---------------------------------------------------------------------------------
+double valor = 15.175;
+int inteiro = 256;
+
+Console.WriteLine(valor.ToString("F1")); // 15.2 => Uma casa decimal
+Console.WriteLine(valor.ToString("C")); // R$ 15,18 => Valor monetário (Sistema)
+Console.WriteLine(valor.ToString("P")); // 1.517,50% => x100 Percentual
+Console.WriteLine(valor.ToString("#.##")); // 15,18 => Duas casas decimais
+Console.WriteLine(valor.ToString("C0", new System.Globalization.CultureInfo("en-US"))); // $15 => Valor monetário sem casa decimal (Cultura específica)
+Console.WriteLine(inteiro.ToString("D10")); // 0000000256 => Número com X dígitos de caracteres
+
+---------------------------------------------------------------------------------
+03.23 - Conversões
+---------------------------------------------------------------------------------
+int inteiro = 10;
+double quebrado = inteiro; // Conversão implícita, de um valor menor para o maior.
+
+double nota = 9.7;
+int notaTruncada = (int) nota; // Cast => Conversão explícita
+
+string idadeString = "33";
+int idadeInteiro = int.Parse(idadeString); // Parse
+idadeInteiro = Convert.ToInt32(idadeString); // Convert
+
+string palavra = "5";
+int numero1;
+int.TryParse(palavra, out numero1); // TryParse
+int.TryParse("8", out int numero2);
+
+---------------------------------------------------------------------------------
+03.24 - Operadores Aritiméticos
+---------------------------------------------------------------------------------
+double total = preco + imposto;
+var totalComDesconto = total - total * desconto;
+
+// IMC
+double peso = 91.2;
+double altura = 1.82;
+double imc = peso / Math.Pow(altura, 2); // Potência
+
+int impar = 55;
+Console.WriteLine("{0}/2 tem resto {1}", impar, impar % 2); // 55 / 2 tem resto 1
+
+---------------------------------------------------------------------------------
+03.25 - Operadores Relacionais
+---------------------------------------------------------------------------------
+- Todos os resultados são Verdadeiro ou Falso
+
+double nota = 6.0;
+double notaDeCorte = 7.0;
+
+Console.WriteLine("Nota inválida? {0}", nota > 10.0); // False
+Console.WriteLine("Nota inválida? {0}", nota < 0.0); // False
+Console.WriteLine("Perfeito? {0}", nota == 10.0); // False
+Console.WriteLine("Tem como melhorar? {0}", nota != 10.0); // True
+Console.WriteLine("Passou por média? {0}", nota >= notaDeCorte); // False
+Console.WriteLine("Recuperação? {0}", nota < notaDeCorte); // True
+Console.WriteLine("Reprovado? {0}", nota <= 3.0); // False
+
+---------------------------------------------------------------------------------
+03.26/27 - Operadores Lógicos
+---------------------------------------------------------------------------------
+var executouTrabalho1 = false;
+var executouTrabalho2 = false;
+bool comprouTv50 = executouTrabalho1 && executouTrabalho2; // "E"
+var comprouSorvete = executouTrabalho1 || executouTrabalho2; // "Ou"
+var comprouTv32 = executouTrabalho1 ^ executouTrabalho2; // "Ou exclusivo". Apenas um dos dois podem ser True, se os dois operadores forem True o resultado é False.
+
+Console.WriteLine("Comprou a Tv 50? {0}", comprouTv50); // False
+Console.WriteLine("Comprou o sorvete? {0}", comprouSorvete); // False
+Console.WriteLine("Comprou a Tv 32? {0}", comprouTv32); // False
+Console.WriteLine("Mais saudável? {0}", !comprouSorvete); // True
+
+---------------------------------------------------------------------------------
+03.28 - Operadores Atribuição
+---------------------------------------------------------------------------------
+var num1 = 3;
+num1 = 7; // Atribuição literal
+num1 += 10; // Atribuição Aditiva (num1 = num1 + 10)
+num1 -= 3; // Atribuição Subtrativa (num1 = num1 - 3)
+num1 *= 5; // Atribuição Multiplicativa (num1 = num1 * 5)
+num1 /= 2; // Atribuição Divisiva (num1 = num1 / 2)
+
+int a = 1;
+int b = a; // Atribuição valor (Cópia)
+
+a++; // a = a + 1;
+b--; // b = b - 1;
+
+dynamic c = new System.Dynamic.ExpandoObject();
+c.nome = "João";
+
+dynamic d = c; // Atribuição referência (Mesmo espaço na memória)
+d.nome = "Maria";
+
+---------------------------------------------------------------------------------
+03.29 - Operadores Unários
+---------------------------------------------------------------------------------
+var valorNegativo = -5;
+var numero1 = 2;
+var numero2 = 3;
+var booleano = true;
+
+Console.WriteLine(-valorNegativo); // 5
+Console.WriteLine(!booleano); // False
+
+numero1++; // Pós fixado (Após a execução)
+Console.WriteLine(numero1); // 3
+
+--numero1; // Pré fixado (Antes a execução)
+Console.WriteLine(numero1); // 2
+
+Console.WriteLine(numero1++ == --numero2); // True (2 == 2)
+Console.WriteLine($"{numero1} {numero2}"); // 3 2
+
+---------------------------------------------------------------------------------
+03.30 - Operador Ternário
+---------------------------------------------------------------------------------
+var nota = 9.0;
+bool bomComportamento = true;
+string resultado = nota >= 7.0 && bomComportamento ? "Aprovado" : "Reprovado";
+Console.WriteLine(resultado); // Aprovado
+

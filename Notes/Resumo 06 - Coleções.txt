@@ -1,0 +1,72 @@
+﻿C# Curso Completo: Do Básico ao Avançado
+Instrutor: Leonardo Moura Leitao (Equipe Cod3r)
+
+---------------------------------------------------------------------------------
+06.62 - Array
+---------------------------------------------------------------------------------
+- Array é uma estrutura indexada, que acessa os elementos à partir de um índice.
+
+string[] alunos = new string[5];
+alunos[0] = "Anderson";
+alunos[1] = "Bia";
+alunos[2] = "Carlos";
+alunos[3] = "Daniela";
+alunos[4] = "Emanuel";
+
+foreach (var aluno in alunos)
+{
+    Console.WriteLine(aluno);
+}
+
+double somatorio = 0;
+double[] notas = { 9.7, 4.8, 8.4, 8.2, 6.8 };
+
+foreach (var nota in notas)
+{
+    somatorio += nota;
+}
+
+//for(int i = 0; i < notas.Length; i++) {
+//    somatorio += notas[i];
+//}
+
+Console.WriteLine(somatorio); // 37.9
+
+double media = somatorio / notas.Length;
+Console.WriteLine(media); // 7.58
+
+char[] letras = { 'A', 'r', 'r', 'a', 'y' };
+string palavra = new string(letras);
+Console.WriteLine(palavra); // Array
+
+---------------------------------------------------------------------------------
+06.63 - List
+---------------------------------------------------------------------------------
+var livro = new Produto("Game of Thrones", 49.9);
+            
+var carrinho = new List<Produto>();
+carrinho.Add(livro);
+
+var combo = new List<Produto> {
+    new Produto("Camisa", 29.9),
+    new Produto("8ª Temporada Game of Thrones", 99.9),
+    new Produto("Poster", 10)
+};
+
+carrinho.AddRange(combo);
+Console.WriteLine(carrinho.Count); // 4
+carrinho.RemoveAt(3); // Remover índice 3
+
+foreach (var item in carrinho) {
+    Console.Write(carrinho.IndexOf(item));
+    Console.WriteLine($" {item.Nome} {item.Preco}");
+}
+
+Console.WriteLine(carrinho.Count); // 3
+carrinho.Add(livro);
+Console.WriteLine(carrinho.LastIndexOf(livro)); // Último índice: 3
+
+---------------------------------------------------------------------------------
+06.64 - Array List
+---------------------------------------------------------------------------------
+

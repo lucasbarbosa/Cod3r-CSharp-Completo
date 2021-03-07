@@ -1,0 +1,31 @@
+C# Curso Completo: Do Básico ao Avançado
+Instrutor: Leonardo Moura Leitao (Equipe Cod3r)
+
+=================================================================================
+
+Esse curso tem por objetivo apresentar a linguagem C# e os seus recursos e está dividido em 12 seções, quais sejam:
+01. Introdução - Principais temas abordados são: algoritmos, estrutura de dados e introdução ao .NET framework;
+02. Configuração do Ambiente - Os passos necessários para configurar o computador para executar o C#;
+03. Fundamentos - Tem por objetivo estabelecer bases sólidas sobre a linguagem;
+04. Estruturas de Controle - Aqui aprenderemos a controlar o fluxo da aplicação;
+05. Classes & Métodos - Aqui inicia a nossa jornada pela Orientação a Objetos com conceitos essenciais que todo programador precisa saber;
+06. Coleções - Várias estruturas de dados clássicas serão abordadas: array, listas, filas, pilhas, dicionários e etc
+07. Orientação a Objetos - Os pilares das Orientação a Objetos e como aplicar na prática;
+08. Métodos e Funções - O C# também suporte recursos do mundo do funcional, e nessa seção vermos o poder das funções, lambdas e métodos;
+09. Exceções - Quando os erros ocorrem entram em cenas as exceções e as técnicas de tratamento de erro;
+10. Explorando API - Aprenderemos a mexer com arquivos, datas e intervalos de datas;
+11. Tópicos Avançados - Generics, LINQ, Dynamic, Nullables e etc;
+12. Conclusão - Despedida e agradecimento;
+
+=================================================================================
+
+---------------------------------------------------------------------------------
+Atalhos
+---------------------------------------------------------------------------------
+- Ctrl + K + D => Identar código
+- cw + Tab + Tab => Console.WriteLine()
+- prop + Tab + Tab => public int MyProperty { get; set; }
+- /// => <summary></summary>
+- Ctrl + K + C => Comentar bloco
+- Ctrl + K + U => Descomentar bloco
+- Ctrl + D => Duplicar linha ou seleção

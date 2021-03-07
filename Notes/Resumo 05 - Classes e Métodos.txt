@@ -1,0 +1,443 @@
+﻿C# Curso Completo: Do Básico ao Avançado
+Instrutor: Leonardo Moura Leitao (Equipe Cod3r)
+
+---------------------------------------------------------------------------------
+05.41 - Classes e métodos
+---------------------------------------------------------------------------------
+int numero = 1;
+
+- int => Tipo
+- numero => Identificador
+- 1 => Valor
+
+Classe => tipo
+
+Pessoa pessoa1 = ...
+
+class Pessoa{
+	- Nome, Idade, Tamanho
+	Atributos => Dados
+
+	- Andar, Levantar, Falar
+	Métodos => Algoritmos (Comportamentos)
+
+	Atributos e Métodos => Membros da Classe
+}
+
+---------------------------------------------------------------------------------
+05.42 - Métodos
+---------------------------------------------------------------------------------
+int Somar1(int a, int b) {
+    return a + b;
+}
+
+void Somar2(int a, int b) {
+    Console.WriteLine(a + b);
+}
+
+bool Verdadeiro() {
+    return true;
+}
+
+void Imprimir() {
+    Console.WriteLine("Imprimir");
+}
+
+---------------------------------------------------------------------------------
+05.43 - Membros: Atributos e Métodos
+---------------------------------------------------------------------------------
+Pessoa sicrano = new Pessoa();
+sicrano.Nome = "Renato";
+sicrano.Idade = 21;
+
+sicrano.ApresentarNoConsole();
+sicrano.Zerar();
+sicrano.ApresentarNoConsole();
+
+var fulano = new Pessoa();
+fulano.Nome = "Beto";
+fulano.Idade = 21;
+
+var apresentacaoDoFulano = fulano.Apresentar();
+Console.WriteLine(apresentacaoDoFulano.Length);
+Console.WriteLine(apresentacaoDoFulano);
+
+---------------------------------------------------------------------------------
+05.44 - Construtores
+---------------------------------------------------------------------------------
+class Carro {
+    public string Modelo;
+    public string Fabricante;
+    public int Ano;
+
+    public Carro(string modelo, string fabricante, int ano) {
+        Modelo = modelo;
+        Fabricante = fabricante;
+        Ano = ano;
+    }
+
+    public Carro() {
+
+    }
+}
+
+var carro1 = new Carro();
+carro1.Fabricante = "BMW";
+carro1.Modelo = "325i";
+carro1.Ano = 2017;
+Console.WriteLine($"{carro1.Fabricante} {carro1.Modelo} {carro1.Ano}");
+
+var carro2 = new Carro("Ka", "Ford", 2018);
+Console.WriteLine($"{carro2.Fabricante} {carro2.Modelo} {carro2.Ano}");
+
+var carro3 = new Carro() {
+    Fabricante = "Fiat",
+    Modelo = "Uno",
+    Ano = 2019
+};
+Console.WriteLine($"{carro3.Fabricante} {carro3.Modelo} {carro3.Ano}");
+
+---------------------------------------------------------------------------------
+05.45/46 - Métodos com retorno
+---------------------------------------------------------------------------------
+var calculadoraComum = new CalculadoraComum();
+var resultado = calculadoraComum.Somar(5, 5);
+
+Console.WriteLine(resultado);
+Console.WriteLine(calculadoraComum.Subtrair(2, 7));
+Console.WriteLine(calculadoraComum.Multiplicar(4, 4));
+
+var calculadoraCadeia = new CalculadoraCadeia();
+calculadoraCadeia.Somar(3).Multiplicar(3).Imprimir().Limpar().Imprimir();
+
+resultado = calculadoraCadeia.Somar(3).Multiplicar(2).Resultado();
+Console.WriteLine(resultado);
+
+---------------------------------------------------------------------------------
+05.47 - Métodos estáticos
+---------------------------------------------------------------------------------
+- Menbros estátivos pertencem a classe e não a instância
+- Membros estáticos são compartilhados por todas as instâncias da classe
+
+public class CalculadoraEstatica
+{
+    // Método de Classe ou Método estático => Não precisa de instância
+    public static int Multiplicar(int a, int b)
+    {
+        return a * b;
+    }
+
+    // Método de instância!!!
+    public int Somar(int a, int b)
+    {
+        return a + b;
+    }
+}
+
+public static void Executar()
+{
+    var resultado = CalculadoraEstatica.Multiplicar(2, 2);
+    Console.WriteLine("Resultado: {0}", resultado);
+
+    CalculadoraEstatica calc = new CalculadoraEstatica();
+    Console.WriteLine(calc.Somar(2, 2));
+}
+
+---------------------------------------------------------------------------------
+05.48 - Atributos estáticos
+---------------------------------------------------------------------------------
+public class Produto {
+    public string Nome;
+    public double Preco;
+    public static double Desconto = 0.1;
+
+    public Produto(string nome, double preco, double desconto) {
+        Nome = nome;
+        Preco = preco;
+        Desconto = desconto;
+    }
+
+    public Produto() {
+
+    }
+
+    public double CalcularDesconto() {
+        return Preco - Preco * Desconto;
+    }
+}
+
+public static void Executar() {
+    var produto1 = new Produto("Caneta", 3.2, 0.1);
+
+    var produto2 = new Produto() {
+        Nome = "Borracha",
+        Preco = 5.3
+        //, Desconto = 0.1 // Static => Atributo da classe
+    };
+
+    Produto.Desconto = 0.5;
+
+    Console.WriteLine("Preço com desconto: {0}",
+        produto1.CalcularDesconto());
+    Console.WriteLine("Preço com desconto: {0}",
+        produto2.CalcularDesconto());
+
+    Produto.Desconto = 0.02;
+
+    Console.WriteLine("Preço com desconto: {0}",
+        produto1.CalcularDesconto());
+    Console.WriteLine("Preço com desconto: {0}",
+        produto2.CalcularDesconto());
+}
+
+---------------------------------------------------------------------------------
+05.49 - Desafio Atributos
+---------------------------------------------------------------------------------
+- Acessar variável 'a' dentro do método Executar sem alterar o modificador de acesso da variável
+
+class DesafioAtributo
+{
+    int a = 10;
+
+    public static void Executar() {
+        // Console.WriteLine(a);
+
+        DesafioAtributo desafio = new DesafioAtributo();
+        Console.WriteLine(desafio.a);
+    }
+}
+
+---------------------------------------------------------------------------------
+05.51 - Parâmetros variáveis
+---------------------------------------------------------------------------------
+class Params
+{
+    public static void Recepcionar(params string[] pessoas) {
+        foreach (var pessoa in pessoas) {
+            Console.WriteLine("Olá {0}", pessoa);
+        }
+    }
+
+    public static void Executar() {
+        Recepcionar("Pedro", "Manu", "Roger","Ana", "Bia");
+    }
+}
+
+---------------------------------------------------------------------------------
+05.51 - Parâmetros nomeados
+---------------------------------------------------------------------------------
+class ParametrosNomeados
+{
+    public static void Formatar(int dia, int mes, int ano) {
+        Console.WriteLine("{0:D2}/{1:D2}/{2}", dia, mes, ano);
+    }
+
+    public static void Executar() {
+        Formatar(mes: 1, dia: 6, ano: 1996);
+    }
+}
+
+---------------------------------------------------------------------------------
+05.53 - Getters & Setters
+---------------------------------------------------------------------------------
+var moto1 = new Moto("Kawasaki", "Ninja ZX-6R", 636);
+
+Console.WriteLine(moto1.GetMarca());
+Console.WriteLine(moto1.GetModelo());
+Console.WriteLine(moto1.GetCilindrada());
+
+var moto2 = new Moto();
+moto2.SetMarca("Honda");
+moto2.SetModelo("CG Titan");
+moto2.SetCilindrada(150);
+Console.WriteLine(moto2.GetMarca() + " " + moto2.GetModelo() + " " + moto2.GetCilindrada());
+
+---------------------------------------------------------------------------------
+05.54 - Propriedades
+---------------------------------------------------------------------------------
+public class CarroOpcional {
+    double desconto = 0.1; // Private implícito
+
+    string nome;
+    public string Nome {
+        get {
+            return "Opcional: " + nome;
+        }
+        set {
+            nome = value;
+        }
+    }
+
+    // Propriedade autoimplementada
+    public double Preco { get; set; }
+
+    // Somente leitura
+    public double PrecoComDesconto {
+        get => Preco - (desconto * Preco); // Lambda
+        //get {
+        //    return Preco - (desconto * Preco);
+        //}
+    }
+
+    public CarroOpcional() {
+
+    }
+
+    public CarroOpcional(string nome, double preco) {
+        Nome = nome;
+        Preco = preco;
+    }
+}
+
+---------------------------------------------------------------------------------
+05.55 - Atributos Readonly
+---------------------------------------------------------------------------------
+public class Cliente {
+    public string Nome;
+    public readonly DateTime Nascimento;
+
+    public Cliente(string nome, DateTime nascimento) {
+        Nome = nome;
+        Nascimento = nascimento;
+
+        // Nascimento = new DateTime(2020, 10, 10);
+    }
+
+    public string GetDataDeNascimento() {
+        return String.Format("{0}/{1}/{2}", Nascimento.Day, Nascimento.Month, Nascimento.Year);
+    }
+}
+
+---------------------------------------------------------------------------------
+05.56 - Enumerações (Enum)
+---------------------------------------------------------------------------------
+public enum Genero { Acao, Aventura, Terror, Animacao, Comedia };
+
+public class Filme {
+    public string Titulo;
+    public Genero GeneroDoFilme;
+}
+
+class ExemploEnum
+{
+    public static void Executar() {
+        int id = (int)Genero.Animacao;
+        Console.WriteLine(id);
+
+        var filmeParaFamilia = new Filme();
+        filmeParaFamilia.Titulo = "Sharknardo 17";
+        filmeParaFamilia.GeneroDoFilme = Genero.Comedia;
+
+        Console.WriteLine("{0} é {1}!", filmeParaFamilia.Titulo, filmeParaFamilia.GeneroDoFilme);
+    }
+}
+
+---------------------------------------------------------------------------------
+05.57 - Structs
+---------------------------------------------------------------------------------
+interface Ponto {
+    void MoverNaDiagonal(int delta); // Public implícito (Interface)
+}
+
+struct Coordenada: Ponto {
+    public int X;
+    public int Y;
+
+    public Coordenada(int x, int y) {
+        X = x;
+        Y = y;
+    }
+
+    public void MoverNaDiagonal(int delta) {
+        X += delta;
+        Y += delta;
+    }
+}
+
+class ExemploStruct
+{
+    public static void Executar() {
+        Coordenada coordenadaInicial;
+        coordenadaInicial.X = 2;
+        coordenadaInicial.Y = 2;
+
+        Console.WriteLine("Coordenada Inicial:");
+        Console.WriteLine("X = {0}", coordenadaInicial.X);
+        Console.WriteLine("Y = {0}", coordenadaInicial.Y);
+
+        var coordenadaFinal = new Coordenada(x: 9, y: 1);
+        coordenadaFinal.MoverNaDiagonal(10);
+
+        Console.WriteLine("Coordenada Final:");
+        Console.WriteLine("X = {0}", coordenadaFinal.X);
+        Console.WriteLine("Y = {0}", coordenadaFinal.Y);
+    }
+}
+
+---------------------------------------------------------------------------------
+05.58 - Struct X Classe
+---------------------------------------------------------------------------------
+public struct SPonto {
+    public int X;
+    public int Y;
+}
+
+public class CPonto {
+    public int X;
+    public int Y;
+}
+
+public static void Executar() {
+    SPonto ponto1 = new SPonto { X = 1, Y = 3 };
+    SPonto copiaPonto1 = ponto1; // Atribuição por VALOR!!!
+
+    CPonto ponto2 = new CPonto { X = 2, Y = 4 };
+    CPonto copiaPonto2 = ponto2; // Atribuição por REFERÊNCIA!!!
+}
+
+---------------------------------------------------------------------------------
+05.59 - Atribuição por Valor vs Referência
+---------------------------------------------------------------------------------
+- As cópias de structs são feitas por valor, e as cópias de classe são feitas por referência na memória
+
+---------------------------------------------------------------------------------
+05.60 - Parâmetros por Referência
+---------------------------------------------------------------------------------
+- Parâmetros com valor Ref ou Out não podem ter um valor padrão
+- Parâmetros Out precisam ser atribuídos dentro do método
+
+public static void AlterarRef(ref int numero) {
+    numero = numero + 1000;
+}
+
+public static void AlterarOut(out int numero1, out int numero2) {
+    numero1 = 0;
+    numero2 = 0;
+
+    numero1 = numero1 + 15;
+    numero2 = numero2 + 30;
+}
+
+public static void Executar() {
+    int a = 3;
+    AlterarRef(ref a);
+    Console.WriteLine(a); // 1003
+
+    int b;
+    AlterarOut(out b, out int c);
+    Console.WriteLine($"{b} {c}"); // 15 30
+}
+
+---------------------------------------------------------------------------------
+05.61 - Parâmetros com valor padrão
+---------------------------------------------------------------------------------
+public static int Somar(int a = 1, int b = 1) {
+    return a + b;
+}
+
+public static void Executar() {
+    Console.WriteLine(Somar(10, 23)); // 33
+    Console.WriteLine(Somar(50)); // 51
+    Console.WriteLine(Somar()); // 2
+    Console.WriteLine(Somar(b: 7)); // 8
+}

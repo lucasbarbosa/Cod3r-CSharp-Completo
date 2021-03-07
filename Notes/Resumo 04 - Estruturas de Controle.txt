@@ -1,0 +1,171 @@
+C# Curso Completo: Do Básico ao Avançado
+Instrutor: Leonardo Moura Leitao (Equipe Cod3r)
+
+---------------------------------------------------------------------------------
+04.31 - Estrutura IF
+---------------------------------------------------------------------------------
+bool bomComportamento = false;
+double nota = 7.0;
+string entradaBomComportamento = "S";
+
+if (entradaBomComportamento == "S" || entradaBomComportamento == "s")
+    bomComportamento = true;
+
+bomComportamento = entradaBomComportamento == "S" || entradaBomComportamento == "s";
+
+bomComportamento = entradaBomComportamento.ToLower() == "s";
+
+if (nota >= 9.0 && bomComportamento) {
+    Console.WriteLine("Quadro de honra!");
+}
+
+---------------------------------------------------------------------------------
+04.32 - Estrutura IF/Else
+---------------------------------------------------------------------------------
+double nota = 7.0;
+
+if (nota >= 7.0) {
+    Console.WriteLine("Aprovado!");
+    Console.WriteLine("Não fez mais que sua obrigação...");
+} else {
+    Console.WriteLine("Recuperação");
+}
+
+---------------------------------------------------------------------------------
+04.33 - Estrutura IF/Else/If
+---------------------------------------------------------------------------------
+double nota = 7.0;
+
+if(nota >= 9.0) {
+    Console.WriteLine("Quadro de honra!");
+} else if(nota >= 7.0) {
+    Console.WriteLine("Aprovado!");
+} else if(nota >= 5.0) {
+    Console.WriteLine("Recuperação");
+} else {
+    Console.WriteLine("Te vejo na proxima...");
+}
+
+---------------------------------------------------------------------------------
+04.34 - Estrutura Switch
+---------------------------------------------------------------------------------
+int nota;
+
+switch (nota) {
+    case 0:
+        Console.WriteLine("Péssimo");
+        break;
+    case 1:
+    case 2:
+        Console.WriteLine("Ruim");
+        break;
+    case 3:
+        Console.WriteLine("Regular");
+        break;
+    case 4:
+        Console.WriteLine("Bom");
+        break;
+    case 5:
+        Console.WriteLine("Ótimo");
+        Console.WriteLine("Parabéns!");
+        break;
+    default:
+        Console.WriteLine("Nota inválida");
+        break;
+}
+
+---------------------------------------------------------------------------------
+04.35 - Estrutura While
+---------------------------------------------------------------------------------
+int palpite = 3;
+Random random = new Random();
+
+int numeroSecreto = random.Next(1, 16);
+bool numeroEncontrado = false;
+int tentativasRestantes = 5;
+int tentativas = 0;
+
+while (tentativasRestantes > 0 && !numeroEncontrado) {
+    tentativas++;
+    tentativasRestantes--;
+
+    if (numeroSecreto == palpite) {
+        numeroEncontrado = true;
+        var corAnterior = Console.BackgroundColor;
+        Console.BackgroundColor = ConsoleColor.Green;
+        Console.WriteLine("Numero encontrado em {0} tentativas", tentativas);
+        Console.BackgroundColor = corAnterior;
+    } else if (palpite > numeroSecreto) {
+        Console.WriteLine("Menor... Tente novamente!");
+        Console.WriteLine("Tentativas restantes: {0}", tentativasRestantes);
+    } else {
+        Console.WriteLine("Maior... Tente novamente!");
+        Console.WriteLine("Tentativas restantes: {0}", tentativasRestantes);
+    }
+}
+
+---------------------------------------------------------------------------------
+04.36 - Estrutura Do While
+---------------------------------------------------------------------------------
+do {
+    Console.WriteLine("Qual o seu nome?");
+    string entrada = Console.ReadLine();
+
+    Console.WriteLine("Seja bem-vindo {0}", entrada);
+    Console.WriteLine("Deseja continuar?(S/N)");
+    entrada = Console.ReadLine();
+} while (entrada.ToLower() == "s");
+
+---------------------------------------------------------------------------------
+04.37 - Estrutura For
+---------------------------------------------------------------------------------
+for (int i = 1; i <= 5; i++)
+	Console.WriteLine($"O valor de i é {i}.");
+
+---------------------------------------------------------------------------------
+04.38 - Estrutura Foreach
+---------------------------------------------------------------------------------
+var palavra = "Opa!";
+
+foreach (var letra in palavra)
+    Console.WriteLine(letra);
+            
+var alunos = new string[] { "Ana", "Bia", "Carlos" };
+
+foreach (string aluno in alunos) {
+    Console.WriteLine(aluno);
+}
+
+---------------------------------------------------------------------------------
+04.39 - Usando Break
+---------------------------------------------------------------------------------
+- Sai do laço de repetição mais próximo (Break está relacionado a um laço ou switch)
+
+Random random = new Random();
+int numero = random.Next(1, 51);
+
+for (int i = 1; i <= 50; i++) {
+    Console.Write("{0} é o numero que queremos? ", i);
+    if (i == numero) {
+        Console.WriteLine("Sim!");
+        break;
+	} else {
+        Console.WriteLine("Não!");
+    }
+}
+
+Console.WriteLine("Fim!");
+
+---------------------------------------------------------------------------------
+04.40 - Usando Continue
+---------------------------------------------------------------------------------
+int intervalo = 50;
+Console.WriteLine("Numeros pares entre 1 e {0}!", intervalo);
+
+for (int i = 1; i <= intervalo; i++) {
+    if (i % 2 == 1)
+        continue;
+
+    Console.Write(i + " ");
+}
+
